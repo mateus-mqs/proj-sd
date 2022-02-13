@@ -1,0 +1,42 @@
+
+State Machine - |estacionamento|vaga:vaga6|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 
+
+State Machine - |estacionamento|vaga:vaga5|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 
+
+State Machine - |estacionamento|vaga:vaga4|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 
+
+State Machine - |estacionamento|vaga:vaga3|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 
+
+State Machine - |estacionamento|vaga:vaga2|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 
+
+State Machine - |estacionamento|vaga:vaga1|atual_state
+Name atual_state.st_tudo atual_state.st_cheio atual_state.st_vazio atual_state.st_init 
+atual_state.st_init 0 0 0 0 
+atual_state.st_vazio 0 0 1 1 
+atual_state.st_cheio 0 1 0 1 
+atual_state.st_tudo 1 0 0 1 

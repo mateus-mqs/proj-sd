@@ -1,0 +1,12 @@
+I/O Assignment Analysis Status : Successful - Thu Feb 03 12:50:34 2022
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Revision Name : estacionamento
+Top-level Entity Name : estacionamento
+Family : MAX 10
+Device : 10M50DAF484C7G
+Timing Models : Final
+Total pins : 35 / 360 ( 10 % )
+Total virtual pins : 0
+Total PLLs : 0 / 4 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )

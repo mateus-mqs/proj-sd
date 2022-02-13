@@ -1,0 +1,108 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity estacionamento is
+	port( s: in std_logic_vector(5 downto 0);
+			clock : in std_logic;
+			rst : in std_logic;
+			l : out std_logic_vector(5 downto 0);
+			led1 : out std_logic_vector(6 downto 0);
+			led2 : out std_logic_vector(6 downto 0);
+			led3 : out std_logic_vector(6 downto 0);
+			w : inout std_logic_vector(5 downto 0)
+		);
+end estacionamento;
+
+architecture RTL of estacionamento is
+		signal aux_c1, aux_c2, aux_c3, aux_c4, aux_c5, aux_c6 : std_logic_vector(7 downto 0);
+		signal aux_w : std_logic_vector(5 downto 0);
+		signal aux_s : std_logic_vector(5 downto 0);
+		signal aux_l : std_logic_vector(5 downto 0);
+		signal aux_rst, aux_clock : std_logic;
+		signal num_led_in : std_logic_vector(7 downto 0);
+		signal led_out_1, led_out_2, led_out_3 : std_logic_vector(6 downto 0);
+		signal num_in_aux : std_logic_vector(7 downto 0);
+		signal ativa_aux : std_logic;
+		signal clock200 : std_logic;
+		--signal l : std_logic_vector(5 downto 0);
+	component clk200Hz
+	port
+	(
+		clk_in : in  STD_LOGIC;
+        reset  : in  STD_LOGIC;
+        clk_out: out STD_LOGIC
+	);
+	end component;
+	
+	component vaga
+	port
+	(
+		s_signal : in std_logic;
+		clk_signal : in std_logic;
+		rst_signal : in std_logic;
+		led_signal : out std_logic;
+		wrt_signal : out std_logic;
+		data_signal : out std_logic_vector(7 downto 0)
+	);
+	end component;
+	
+
+	component display
+	port
+	(
+		num_in : in std_logic_vector(7 downto 0);
+		ativa : in std_logic;
+	 LED_out1 : out std_logic_vector(6 downto 0);
+	 LED_out2 : out std_logic_vector(6 downto 0);
+	 LED_out3 : out std_logic_vector(6 downto 0)
+	);
+	end component;
+begin
+	clock200hz:clk200Hz port map(clk_in => aux_clock, reset => aux_rst, clk_out => clock200);
+	vaga1:vaga port map(s_signal => aux_s(0), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(0), wrt_signal => w(0), data_signal => aux_c1);
+	vaga2:vaga port map(s_signal => aux_s(1), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(1), wrt_signal => w(1), data_signal => aux_c2);
+	vaga3:vaga port map(s_signal => aux_s(2), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(2), wrt_signal => w(2), data_signal => aux_c3);
+	vaga4:vaga port map(s_signal => aux_s(3), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(3), wrt_signal => w(3), data_signal => aux_c4);
+	vaga5:vaga port map(s_signal => aux_s(4), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(4), wrt_signal => w(4), data_signal => aux_c5);
+	vaga6:vaga port map(s_signal => aux_s(5), clk_signal => aux_clock, rst_signal => aux_rst, led_signal => aux_l(5), wrt_signal => w(5), data_signal => aux_c6);
+	led_display:display port map(num_in => num_led_in, ativa => ativa_aux, LED_out1 => led_out_1, LED_out2 => led_out_2, LED_out3 => led_out_3);		
+	aux_s <= s;
+	aux_clock <= clock200;
+	aux_rst <= rst;
+	l <= aux_l;
+	aux_w <= w;
+	
+	process(aux_w, aux_c1, aux_c2, aux_c3, aux_c4, aux_c5, aux_c6, num_in_aux) is
+		--variable num_in_aux : unsigned(7 downto 0);
+	begin
+		if aux_w = "000001" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c1;
+		elsif aux_w = "000010" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c2;
+		elsif aux_w = "000100" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c3;
+		elsif aux_w = "001000" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c4;
+		elsif aux_w = "010000" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c5;
+		elsif aux_w = "100000" then
+			ativa_aux <= '1';
+			num_in_aux <= aux_c6;
+		else
+			ativa_aux <= '0';
+			num_in_aux <= "00000000";
+		end if;
+		num_led_in <= num_in_aux;
+	end process;
+	led1 <= led_out_1;
+	led2 <= led_out_2;
+	led3 <= led_out_3;
+	
+end RTL;
+		-- TODO: Implementar a lógica de pagamento
